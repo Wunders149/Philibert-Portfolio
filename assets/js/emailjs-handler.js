@@ -136,14 +136,21 @@
       form.reset();
     })
     .catch(function(error) {
-      console.error('EmailJS error:', error);
+      const body = typeof error === 'string'
+        ? error
+        : (error && error.text) ? error.text : '';
+      console.error('EmailJS error:', {
+        status: error && error.status,
+        text: body,
+        raw: error
+      });
       let message = 'Sorry, the message could not be sent. Please try again later.';
       if (error && error.status === 429) {
         message = 'Too many messages sent recently. Please try again later.';
       } else if (typeof error === 'string') {
         message = error;
-      } else if (error && error.text) {
-        message = error.text;
+      } else if (body) {
+        message = body;
       }
       displayError(message);
     });
