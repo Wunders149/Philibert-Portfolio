@@ -419,6 +419,9 @@ h6 {
 
 .header.header-show {
   left: 0;
+  /* Above .mobile-nav-backdrop (z-index 9996) so the menu is not covered
+     or blurred by the backdrop's backdrop-filter and stays clickable. */
+  z-index: 9998;
 }
 
 .header .header-toggle {

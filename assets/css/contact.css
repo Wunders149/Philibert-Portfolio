@@ -144,15 +144,20 @@
   to { transform: rotate(360deg); }
 }
 
-/* ===== Status messages ===== */
+/* ===== Status messages =====
+   Always hidden by default; the EmailJS handler reveals them with Bootstrap's
+   .d-block (display:block !important) when they need to be shown. */
 .contact .php-email-form .loading,
 .contact .php-email-form .error-message,
 .contact .php-email-form .sent-message {
+  display: none;
   border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
+}
+
+.contact .php-email-form .loading.d-block,
+.contact .php-email-form .error-message.d-block,
+.contact .php-email-form .sent-message.d-block {
+  display: block;
 }
 
 .contact .php-email-form .error-message {
