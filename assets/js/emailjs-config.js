@@ -17,6 +17,6 @@
  */
 window.EMAILJS_CONFIG = {
   serviceID: 'service_z90mxjv',
-  templateID: 'template_6wl57k',
-  publicKey: 'mFSDKN8un0X9Pvtm'
+  templateID: 'template_6wl57ka',
+  publicKey: 'mFSDKN8un0X9Pvtm7'
 };
