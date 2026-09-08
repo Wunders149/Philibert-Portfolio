@@ -11,10 +11,23 @@
   if (!form) return;
 
   const config = window.EMAILJS_CONFIG || {};
-  const isConfigured = config.serviceID && config.templateID && config.publicKey &&
-    config.serviceID !== 'service_z90mxjv' &&
-    config.templateID !== 'template_6wl57k' &&
-    config.publicKey !== 'mFSDKN8un0X9Pvtm';
+
+  // A value counts as a placeholder (i.e. not yet configured) when it is
+  // empty or matches a generic "fill this in" token such as YOUR_SERVICE_ID,
+  // placeholder_contact, <your-key>, etc. This avoids hard-coding specific
+  // strings into the guard, which would break if a real id ever matched one.
+  const PLACEHOLDER_PATTERN = /^(your_|placeholder_|<[^>]+>)/i;
+
+  function isPlaceholder(value) {
+    if (value === undefined || value === null) return true;
+    const str = String(value).trim();
+    return str === '' || PLACEHOLDER_PATTERN.test(str);
+  }
+
+  const isConfigured =
+    !isPlaceholder(config.serviceID) &&
+    !isPlaceholder(config.templateID) &&
+    !isPlaceholder(config.publicKey);
 
   const loadingEl = form.querySelector('.loading');
   const errorEl = form.querySelector('.error-message');
@@ -36,7 +49,7 @@
   const RATE_LIMIT_KEY = 'contact_rate_limit';
   const RATE_LIMIT_MS = 5 * 60 * 1000; // 5 minutes
 
-  function checkRateLimit() {
+  function minutesUntilAllowed() {
     try {
       const last = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0', 10);
       if (last && (Date.now() - last) < RATE_LIMIT_MS) {
@@ -50,44 +63,18 @@
     try { localStorage.setItem(RATE_LIMIT_KEY, String(Date.now())); } catch (e) { /* ignore */ }
   }
 
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    // Honeypot spam check
+  // Honeypot field: bots fill it in, humans never see it. Returns true when a
+  // submission should be silently discarded.
+  function isHoneypotFilled() {
     const honeypot = form.querySelector('input[name="website"]');
-    if (honeypot && honeypot.value) {
-      // Silently reject bots without showing an error
-      form.reset();
-      return;
-    }
+    return !!honeypot && honeypot.value !== '';
+  }
 
-    // Rate limit check
-    const minutesLeft = checkRateLimit();
-    if (minutesLeft > 0) {
-      displayError('Please wait about ' + minutesLeft + ' minute(s) before sending another message.');
-      return;
-    }
-
-    // EmailJS not configured yet
-    if (!isConfigured) {
-      displayError('The contact form is not configured yet. Please set your EmailJS keys in assets/js/emailjs-config.js.');
-      return;
-    }
-
-    // Native form validation (browser handles required/minlength/etc.)
-    if (!form.checkValidity()) {
-      form.reportValidity();
-      return;
-    }
-
-    hide(errorEl);
-    hide(sentEl);
-    show(loadingEl);
-
+  function buildParams() {
     const formData = new FormData(form);
 
-    // Build the template params object — field aliases (name, time) are
-    // added for compatibility with common EmailJS template variables.
+    // Field aliases (name, time) are added for compatibility with common
+    // EmailJS template variables.
     const params = {
       subject: formData.get('subject') || '',
       from_name: formData.get('from_name') || '',
@@ -104,7 +91,42 @@
       if (value !== '' && !(key in params)) params[key] = value;
     });
 
-    emailjs.send(config.serviceID, config.templateID, params, {
+    return params;
+  }
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // Honeypot spam check - silently reject bots without showing an error.
+    if (isHoneypotFilled()) {
+      form.reset();
+      return;
+    }
+
+    // Rate limit check.
+    const minutesLeft = minutesUntilAllowed();
+    if (minutesLeft > 0) {
+      displayError('Please wait about ' + minutesLeft + ' minute(s) before sending another message.');
+      return;
+    }
+
+    // EmailJS not configured yet.
+    if (!isConfigured) {
+      displayError('The contact form is not configured yet. Please set your EmailJS keys in assets/js/emailjs-config.js.');
+      return;
+    }
+
+    // Native form validation (browser handles required/minlength/etc.).
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    hide(errorEl);
+    hide(sentEl);
+    show(loadingEl);
+
+    emailjs.send(config.serviceID, config.templateID, buildParams(), {
       publicKey: config.publicKey
     })
     .then(function() {
