@@ -84,7 +84,27 @@
     hide(sentEl);
     show(loadingEl);
 
-    emailjs.sendForm(config.serviceID, config.templateID, form, {
+    const formData = new FormData(form);
+
+    // Build the template params object — field aliases (name, time) are
+    // added for compatibility with common EmailJS template variables.
+    const params = {
+      subject: formData.get('subject') || '',
+      from_name: formData.get('from_name') || '',
+      name: formData.get('from_name') || '',
+      reply_to: formData.get('reply_to') || '',
+      message: formData.get('message') || '',
+      time: new Date().toLocaleString()
+    };
+
+    // Forward any other non-empty form fields to support custom template
+    // variables. The honeypot field is always excluded.
+    formData.forEach(function(value, key) {
+      if (key === 'website') return;
+      if (value !== '' && !(key in params)) params[key] = value;
+    });
+
+    emailjs.send(config.serviceID, config.templateID, params, {
       publicKey: config.publicKey
     })
     .then(function() {
@@ -100,6 +120,8 @@
         message = 'Too many messages sent recently. Please try again later.';
       } else if (typeof error === 'string') {
         message = error;
+      } else if (error && error.text) {
+        message = error.text;
       }
       displayError(message);
     });
