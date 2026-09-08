@@ -26,12 +26,12 @@
 
   <!-- Favicons -->
   <link href="../assets/img/favicon.png" rel="icon">
+  <link href="../assets/img/favicon.ico" rel="shortcut icon">
   <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <meta name="theme-color" content="#149ddd">
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com" rel="preconnect">
-  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <!-- Fonts (self-hosted) -->
+  <link href="../assets/css/fonts.css" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -41,7 +41,7 @@
   <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Main CSS File -->
-  <link href="../assets/css/main.css" rel="stylesheet">
+  <link href="../assets/css/main.min.css" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: iPortfolio
@@ -54,8 +54,10 @@
 
 <body class="service-details-page">
 
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+
   <header id="header" class="header dark-background d-flex flex-column">
-    <i class="header-toggle d-xl-none bi bi-list" aria-label="Toggle navigation menu"></i>
+    <i class="header-toggle d-xl-none bi bi-list" aria-label="Toggle navigation menu" role="button" tabindex="0" aria-expanded="false" aria-controls="navmenu"></i>
 
     <div class="profile-img">
       <img src="../assets/img/my-profile-img.png" alt="Philibert RAZAFIMAHEFA Profile Picture" class="img-fluid rounded-circle">
@@ -73,13 +75,21 @@
       <a href="https://www.instagram.com/rzfphily/" class="instagram" aria-label="Instagram Profile"><i class="bi bi-instagram"></i></a>
       <a href="https://github.com/Wunders149" class="github" aria-label="GitHub Profile"><i class="bi bi-github"></i></a>
     </div>
+    <div class="dark-mode-toggle text-center" role="group" aria-label="Theme switcher">
+      <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle dark mode" aria-pressed="false">
+        <i class="bi bi-moon-stars"></i>
+        <i class="bi bi-sun"></i>
+        <span class="theme-toggle-text">Dark Mode</span>
+      </button>
+    </div>
 
-    <nav id="navmenu" class="navmenu">
+    <nav id="navmenu" class="navmenu" aria-label="Main navigation">
       <ul>
         <li><a href="../index.html#hero"><i class="bi bi-house navicon"></i>Home</a></li>
         <li><a href="../index.html#about"><i class="bi bi-person navicon"></i> About</a></li>
         <li><a href="../index.html#resume"><i class="bi bi-file-earmark-text navicon"></i> Resume</a></li>
         <li><a href="../index.html#portfolio"><i class="bi bi-images navicon"></i> Portfolio</a></li>
+        <li><a href="starter-page.html"><i class="bi bi-layers navicon"></i> Projects</a></li>
         <li><a href="../index.html#services"><i class="bi bi-hdd-stack navicon"></i> Services</a></li>
         <li><a href="../index.html#contact"><i class="bi bi-envelope navicon"></i> Contact</a></li>
       </ul>
@@ -87,7 +97,7 @@
 
   </header>
 
-  <main class="main">
+  <main id="main-content" class="main" role="main">
 
     <!-- Page Title -->
     <div class="page-title dark-background">
@@ -154,7 +164,7 @@
 
   </main>
 
-  <footer id="footer" class="footer position-relative light-background">
+  <footer id="footer" class="footer position-relative light-background" role="contentinfo">
 
     <div class="container">
       <div class="copyright text-center ">
@@ -172,10 +182,10 @@
   </footer>
 
   <!-- Scroll Top -->
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center" aria-label="Scroll back to top"><i class="bi bi-arrow-up-short" aria-hidden="true"></i></a>
 
   <!-- Preloader -->
-  <div id="preloader"></div>
+  <div id="preloader" role="status" aria-label="Loading page"></div>
 
   <!-- Vendor JS Files -->
   <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -190,7 +200,8 @@
   <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
 
   <!-- Main JS File -->
-  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/main.min.js"></script>
+  <script src="../assets/js/analytics.js"></script>
 
 </body>
 

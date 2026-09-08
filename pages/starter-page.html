@@ -26,12 +26,12 @@
 
   <!-- Favicons -->
   <link href="../assets/img/favicon.png" rel="icon">
+  <link href="../assets/img/favicon.ico" rel="shortcut icon">
   <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <meta name="theme-color" content="#149ddd">
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com" rel="preconnect">
-  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <!-- Fonts (self-hosted) -->
+  <link href="../assets/css/fonts.css" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -41,7 +41,7 @@
   <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Main CSS File -->
-  <link href="../assets/css/main.css" rel="stylesheet">
+  <link href="../assets/css/main.min.css" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: iPortfolio
@@ -54,8 +54,10 @@
 
 <body class="starter-page-page">
 
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+
   <header id="header" class="header dark-background d-flex flex-column">
-    <i class="header-toggle d-xl-none bi bi-list" aria-label="Toggle navigation menu"></i>
+    <i class="header-toggle d-xl-none bi bi-list" aria-label="Toggle navigation menu" role="button" tabindex="0" aria-expanded="false" aria-controls="navmenu"></i>
 
     <div class="profile-img">
       <img src="../assets/img/my-profile-img.png" alt="Philibert RAZAFIMAHEFA Profile Picture" class="img-fluid rounded-circle">
@@ -74,12 +76,21 @@
       <a href="https://github.com/Wunders149" class="github" aria-label="GitHub Profile"><i class="bi bi-github"></i></a>
     </div>
 
-    <nav id="navmenu" class="navmenu">
+    <div class="dark-mode-toggle text-center" role="group" aria-label="Theme switcher">
+      <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle dark mode" aria-pressed="false">
+        <i class="bi bi-moon-stars"></i>
+        <i class="bi bi-sun"></i>
+        <span class="theme-toggle-text">Dark Mode</span>
+      </button>
+    </div>
+
+    <nav id="navmenu" class="navmenu" aria-label="Main navigation">
       <ul>
         <li><a href="../index.html#hero"><i class="bi bi-house navicon"></i>Home</a></li>
         <li><a href="../index.html#about"><i class="bi bi-person navicon"></i> About</a></li>
         <li><a href="../index.html#resume"><i class="bi bi-file-earmark-text navicon"></i> Resume</a></li>
         <li><a href="../index.html#portfolio"><i class="bi bi-images navicon"></i> Portfolio</a></li>
+        <li><a href="starter-page.html" class="active" aria-current="page"><i class="bi bi-layers navicon"></i> Projects</a></li>
         <li><a href="../index.html#services"><i class="bi bi-hdd-stack navicon"></i> Services</a></li>
         <li><a href="../index.html#contact"><i class="bi bi-envelope navicon"></i> Contact</a></li>
       </ul>
@@ -87,35 +98,237 @@
 
   </header>
 
-  <main class="main">
+  <main id="main-content" class="main" role="main">
 
     <!-- Page Title -->
     <div class="page-title dark-background">
       <div class="container d-lg-flex justify-content-between align-items-center">
-        <h1 class="mb-2 mb-lg-0">Starter Page</h1>
+        <h1 class="mb-2 mb-lg-0">All Projects</h1>
         <nav class="breadcrumbs" aria-label="Breadcrumb navigation">
           <ol>
             <li><a href="../index.html">Home</a></li>
-            <li class="current">Starter Page</li>
+            <li class="current">Projects</li>
           </ol>
         </nav>
       </div>
     </div><!-- End Page Title -->
 
-    <!-- Starter Section Section -->
-    <section id="starter-section" class="starter-section section">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>More Projects</h2>
-        <p>Additional projects and case studies</p>
-      </div><!-- End Section Title -->
+    <!-- Projects Section -->
+    <section id="projects-section" class="projects-section section">
 
       <div class="container" data-aos="fade-up">
-        <p>This page is available for showcasing additional projects, case studies, or detailed write-ups of my work. Content coming soon — feel free to <a href="../index.html#contact">contact me</a> for more information about any project.</p>
+
+        <div class="row gy-4">
+
+          <!-- Project 1: Task Manager -->
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="card h-100">
+              <img src="../assets/img/portfolio/app-1.jpg" class="card-img-top" alt="Task Manager Mobile App" loading="lazy">
+              <div class="card-body">
+                <h3 class="card-title">Task Manager</h3>
+                <p class="card-text">A cross-platform mobile application built with Ionic framework. Features include task creation, categorization, reminders, and progress tracking with a clean, intuitive interface.</p>
+                <div class="mb-2">
+                  <span class="badge bg-primary">Ionic</span>
+                  <span class="badge bg-secondary">TypeScript</span>
+                  <span class="badge bg-info">Mobile</span>
+                </div>
+                <p><strong>Key Features:</strong> Cross-platform compatibility, offline support, push notifications, intuitive UI</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 2: E-Commerce -->
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="card h-100">
+              <img src="../assets/img/portfolio/product-1.jpg" class="card-img-top" alt="E-Commerce Web Application" loading="lazy">
+              <div class="card-body">
+                <h3 class="card-title">E-Commerce Platform</h3>
+                <p class="card-text">Full-stack web application built with Angular frontend and PHP backend. Features product catalog, shopping cart, user authentication, and payment integration.</p>
+                <div class="mb-2">
+                  <span class="badge bg-primary">Angular</span>
+                  <span class="badge bg-secondary">PHP</span>
+                  <span class="badge bg-info">Web</span>
+                </div>
+                <p><strong>Key Features:</strong> Responsive design, secure payments, admin dashboard, inventory management</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 3: POS System -->
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="card h-100">
+              <img src="../assets/img/portfolio/branding-1.jpg" class="card-img-top" alt="POS System Desktop Application" loading="lazy">
+              <div class="card-body">
+                <h3 class="card-title">POS System</h3>
+                <p class="card-text">Desktop application for point-of-sale management. Includes inventory tracking, sales reporting, customer management, and receipt printing capabilities.</p>
+                <div class="mb-2">
+                  <span class="badge bg-primary">Desktop</span>
+                  <span class="badge bg-secondary">Database</span>
+                  <span class="badge bg-info">Business</span>
+                </div>
+                <p><strong>Key Features:</strong> Real-time inventory, sales analytics, multi-user support, barcode scanning</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 4: Voice Robot -->
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
+            <div class="card h-100">
+              <img src="../assets/img/portfolio/books-1.jpg" class="card-img-top" alt="Arduino Voice Robot" loading="lazy">
+              <div class="card-body">
+                <h3 class="card-title">Voice Robot</h3>
+                <p class="card-text">Arduino-based voice-controlled robot integrated with AI capabilities. Uses TensorFlow Lite for voice recognition and natural language processing.</p>
+                <div class="mb-2">
+                  <span class="badge bg-primary">Arduino</span>
+                  <span class="badge bg-secondary">AI</span>
+                  <span class="badge bg-info">Robotics</span>
+                </div>
+                <p><strong>Key Features:</strong> Voice commands, obstacle avoidance, real-time control, AI integration</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 5: Fitness Tracker -->
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="500">
+            <div class="card h-100">
+              <img src="../assets/img/portfolio/app-2.jpg" class="card-img-top" alt="Fitness Tracker Mobile App" loading="lazy">
+              <div class="card-body">
+                <h3 class="card-title">Fitness Tracker</h3>
+                <p class="card-text">Health and wellness mobile application with workout tracking, calorie counting, progress visualization, and personalized recommendations.</p>
+                <div class="mb-2">
+                  <span class="badge bg-primary">Mobile</span>
+                  <span class="badge bg-secondary">Health</span>
+                  <span class="badge bg-info">UI/UX</span>
+                </div>
+                <p><strong>Key Features:</strong> Activity tracking, nutrition logging, progress charts, social features</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 6: Dashboard -->
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="600">
+            <div class="card h-100">
+              <img src="../assets/img/portfolio/product-2.jpg" class="card-img-top" alt="Analytics Dashboard" loading="lazy">
+              <div class="card-body">
+                <h3 class="card-title">Analytics Dashboard</h3>
+                <p class="card-text">Interactive analytics dashboard with real-time data visualization, customizable widgets, and comprehensive reporting capabilities.</p>
+                <div class="mb-2">
+                  <span class="badge bg-primary">Web</span>
+                  <span class="badge bg-secondary">Data Viz</span>
+                  <span class="badge bg-info">Analytics</span>
+                </div>
+                <p><strong>Key Features:</strong> Real-time updates, customizable charts, export options, responsive design</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 7: Inventory -->
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="card h-100">
+              <img src="../assets/img/portfolio/branding-2.jpg" class="card-img-top" alt="Inventory Management Software" loading="lazy">
+              <div class="card-body">
+                <h3 class="card-title">Inventory Manager</h3>
+                <p class="card-text">Desktop software for inventory management with stock tracking, automated alerts, supplier management, and detailed reporting.</p>
+                <div class="mb-2">
+                  <span class="badge bg-primary">Desktop</span>
+                  <span class="badge bg-secondary">Database</span>
+                  <span class="badge bg-info">Management</span>
+                </div>
+                <p><strong>Key Features:</strong> Stock alerts, barcode support, multi-location, audit trail</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 8: Smart Home -->
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="card h-100">
+              <img src="../assets/img/portfolio/books-2.jpg" class="card-img-top" alt="Smart Home IoT System" loading="lazy">
+              <div class="card-body">
+                <h3 class="card-title">Smart Home System</h3>
+                <p class="card-text">IoT home automation system built with Arduino. Controls lighting, temperature, and security through a web interface and mobile app.</p>
+                <div class="mb-2">
+                  <span class="badge bg-primary">IoT</span>
+                  <span class="badge bg-secondary">Arduino</span>
+                  <span class="badge bg-info">Automation</span>
+                </div>
+                <p><strong>Key Features:</strong> Remote control, scheduling, energy monitoring, voice control</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 9: Chat App -->
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="card h-100">
+              <img src="../assets/img/portfolio/app-3.jpg" class="card-img-top" alt="Chat Application" loading="lazy">
+              <div class="card-body">
+                <h3 class="card-title">Chat App</h3>
+                <p class="card-text">Real-time messaging mobile application with features like group chats, file sharing, read receipts, and end-to-end encryption.</p>
+                <div class="mb-2">
+                  <span class="badge bg-primary">Mobile</span>
+                  <span class="badge bg-secondary">Real-time</span>
+                  <span class="badge bg-info">Messaging</span>
+                </div>
+                <p><strong>Key Features:</strong> Real-time messaging, media sharing, notifications, security</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 10: Portfolio Website -->
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
+            <div class="card h-100">
+              <img src="../assets/img/portfolio/product-3.jpg" class="card-img-top" alt="Portfolio Website" loading="lazy">
+              <div class="card-body">
+                <h3 class="card-title">Portfolio Website</h3>
+                <p class="card-text">This personal portfolio website built with Bootstrap, featuring responsive design, animations, and modern web technologies.</p>
+                <div class="mb-2">
+                  <span class="badge bg-primary">HTML/CSS</span>
+                  <span class="badge bg-secondary">Bootstrap</span>
+                  <span class="badge bg-info">JavaScript</span>
+                </div>
+                <p><strong>Key Features:</strong> Responsive design, AOS animations, Isotope filtering, Swiper carousel</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 11: HR Manager -->
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="500">
+            <div class="card h-100">
+              <img src="../assets/img/portfolio/branding-3.jpg" class="card-img-top" alt="HR Manager Application" loading="lazy">
+              <div class="card-body">
+                <h3 class="card-title">HR Manager</h3>
+                <p class="card-text">Human resources desktop application for employee management, attendance tracking, payroll processing, and performance evaluations.</p>
+                <div class="mb-2">
+                  <span class="badge bg-primary">Desktop</span>
+                  <span class="badge bg-secondary">HR</span>
+                  <span class="badge bg-info">Management</span>
+                </div>
+                <p><strong>Key Features:</strong> Employee database, leave management, reports, document storage</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 12: Line Follower -->
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="600">
+            <div class="card h-100">
+              <img src="../assets/img/portfolio/books-3.jpg" class="card-img-top" alt="Line Follower Robot" loading="lazy">
+              <div class="card-body">
+                <h3 class="card-title">Line Follower Robot</h3>
+                <p class="card-text">Autonomous line-following robot using infrared sensors and PID control algorithm for smooth and accurate path following.</p>
+                <div class="mb-2">
+                  <span class="badge bg-primary">Arduino</span>
+                  <span class="badge bg-secondary">Robotics</span>
+                  <span class="badge bg-info">Autonomous</span>
+                </div>
+                <p><strong>Key Features:</strong> PID control, sensor fusion, speed optimization, maze solving</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
       </div>
 
-    </section><!-- /Starter Section Section -->
+    </section><!-- /Projects Section -->
 
   </main>
 
@@ -155,7 +368,8 @@
   <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
 
   <!-- Main JS File -->
-  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/main.min.js"></script>
+  <script src="../assets/js/analytics.js"></script>
 
 </body>
 

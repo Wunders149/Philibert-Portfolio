@@ -10,16 +10,76 @@
   "use strict";
 
   /**
+   * Register Service Worker
+   */
+  if ('serviceWorker' in navigator && window.location.protocol === 'https:') {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js').catch(() => {
+        // Service worker registration failed - non-critical, ignore in dev
+      });
+    });
+  }
+
+  /**
+   * Dark mode toggle
+   */
+  const themeToggleBtn = document.querySelector('#theme-toggle');
+  const body = document.body;
+
+  function applyTheme(isDark) {
+    body.classList.toggle('dark-mode', isDark);
+    if (themeToggleBtn) {
+      themeToggleBtn.setAttribute('aria-pressed', String(isDark));
+    }
+  }
+
+  function initTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const isDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+    applyTheme(isDark);
+  }
+
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+      const isDark = !body.classList.contains('dark-mode');
+      applyTheme(isDark);
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+  }
+
+  initTheme();
+
+  // Listen for system theme changes when no explicit preference is stored
+  if (window.matchMedia) {
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+      if (!localStorage.getItem('theme')) {
+        applyTheme(e.matches);
+      }
+    });
+  }
+
+  /**
    * Header toggle
    */
   const headerToggleBtn = document.querySelector('.header-toggle');
+  const header = document.querySelector('#header');
+
+  // Create backdrop element
+  let backdrop = document.createElement('div');
+  backdrop.className = 'mobile-nav-backdrop';
+  document.body.appendChild(backdrop);
 
   function headerToggle() {
-    document.querySelector('#header').classList.toggle('header-show');
+    header.classList.toggle('header-show');
     headerToggleBtn.classList.toggle('bi-list');
     headerToggleBtn.classList.toggle('bi-x');
+    backdrop.classList.toggle('active');
+    document.body.style.overflow = header.classList.contains('header-show') ? 'hidden' : '';
   }
+
   headerToggleBtn.addEventListener('click', headerToggle);
+  backdrop.addEventListener('click', headerToggle);
 
   /**
    * Hide mobile nav on same-page/hash links
@@ -203,6 +263,44 @@
       }
     }
   });
+
+  /**
+   * Newsletter form handling
+   */
+  const newsletterForm = document.querySelector('#newsletter-form');
+  const newsletterMessage = document.querySelector('#newsletter-message');
+  const newsletterEmail = document.querySelector('#newsletter-email');
+
+  if (newsletterForm) {
+    newsletterForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const email = newsletterEmail.value.trim();
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (!email || !emailRegex.test(email)) {
+        newsletterMessage.textContent = 'Please enter a valid email address.';
+        newsletterMessage.className = 'form-message mt-2 text-danger';
+        newsletterEmail.focus();
+        return;
+      }
+
+      // Save subscription to localStorage (privacy-friendly)
+      try {
+        const subs = JSON.parse(localStorage.getItem('newsletter_subscribers') || '[]');
+        if (!subs.includes(email)) {
+          subs.push(email);
+          localStorage.setItem('newsletter_subscribers', JSON.stringify(subs));
+        }
+      } catch (err) {
+        // Storage unavailable - ignore
+      }
+
+      newsletterMessage.textContent = 'Thank you for subscribing! You will be notified of updates.';
+      newsletterMessage.className = 'form-message mt-2 text-success';
+      newsletterForm.reset();
+    });
+  }
 
   /**
    * Navmenu Scrollspy

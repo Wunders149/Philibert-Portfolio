@@ -52,9 +52,207 @@
   --contrast-color: #ffffff;
 }
 
+/* Dark Mode Toggle */
+.dark-mode-toggle {
+  padding: 10px 15px;
+}
+
+.theme-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #a8a9b4;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 30px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-family: var(--nav-font);
+  transition: all 0.3s ease;
+  width: 100%;
+  justify-content: center;
+}
+
+.theme-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.theme-toggle-btn .bi-moon-stars {
+  display: inline;
+}
+
+.theme-toggle-btn .bi-sun {
+  display: none;
+}
+
+body.dark-mode .theme-toggle-btn .bi-moon-stars {
+  display: none;
+}
+
+body.dark-mode .theme-toggle-btn .bi-sun {
+  display: inline;
+}
+
+/* Dark Mode Theme */
+body.dark-mode {
+  color-scheme: dark;
+}
+
+body.dark-mode {
+  --background-color: #0e1621;
+  --default-color: #c8d0dc;
+  --heading-color: #f0f4f8;
+  --surface-color: #1a2533;
+  --contrast-color: #ffffff;
+  --accent-color: #4fb3e8;
+}
+
+body.dark-mode .light-background {
+  --background-color: #16212e;
+  --surface-color: #1e2c3d;
+}
+
+body.dark-mode .dark-background {
+  --background-color: #0a1119;
+  --default-color: #ffffff;
+  --heading-color: #ffffff;
+  --surface-color: #1a2533;
+  --contrast-color: #ffffff;
+}
+
+body.dark-mode .section-title h2::after,
+body.dark-mode .section-title h2::before {
+  background: var(--accent-color);
+}
+
+body.dark-mode .testimonial-item {
+  background: var(--surface-color);
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode .service-item {
+  background: var(--surface-color);
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode .portfolio-content {
+  background: var(--surface-color);
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode .progress {
+  background-color: #2a3a4d;
+}
+
+body.dark-mode .form-control {
+  background-color: var(--surface-color);
+  color: var(--default-color);
+  border-color: #2a3a4d;
+}
+
+body.dark-mode .form-control:focus {
+  background-color: var(--surface-color);
+  color: var(--default-color);
+  border-color: var(--accent-color);
+  box-shadow: none;
+}
+
+body.dark-mode .form-control::placeholder {
+  color: #6c7a8c;
+}
+
+body.dark-mode .card {
+  background-color: var(--surface-color);
+  border-color: #2a3a4d;
+  color: var(--default-color);
+}
+
+body.dark-mode .card-title {
+  color: var(--heading-color);
+}
+
+body.dark-mode .modal-content {
+  background-color: var(--surface-color);
+  color: var(--default-color);
+}
+
+body.dark-mode .modal-header,
+body.dark-mode .modal-footer {
+  border-color: #2a3a4d;
+}
+
+body.dark-mode .resume-item {
+  border-color: #2a3a4d;
+  background: var(--surface-color);
+}
+
+body.dark-mode .resume-item::before {
+  background: var(--accent-color);
+}
+
+body.dark-mode .page-title {
+  background: var(--dark-background-color, #0a1119) !important;
+}
+
+body.dark-mode .info-item {
+  background: var(--surface-color);
+  color: var(--default-color);
+}
+
+body.dark-mode .info-item h3 {
+  color: var(--heading-color);
+}
+
+body.dark-mode .info-item p,
+body.dark-mode .info-item a {
+  color: var(--default-color);
+}
+
+body.dark-mode .info-item i {
+  color: var(--accent-color);
+  background: rgba(79, 179, 232, 0.1);
+}
+
 /* Smooth scroll */
 :root {
   scroll-behavior: smooth;
+}
+
+/* Skip to content link */
+.skip-to-content {
+  position: fixed;
+  top: -100px;
+  left: 15px;
+  z-index: 10000;
+  background-color: var(--accent-color);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 4px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: top 0.3s ease;
+}
+
+.skip-to-content:focus {
+  top: 15px;
+}
+
+.skip-to-content:hover {
+  color: #fff;
+}
+
+/* Focus visibility for keyboard navigation */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--accent-color);
+  outline-offset: 2px;
 }
 
 /*--------------------------------------------------------------
@@ -238,12 +436,38 @@ h6 {
   top: 15px;
   right: 15px;
   z-index: 9999;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 .header .header-toggle:hover {
   color: var(--contrast-color);
   background-color: color-mix(in srgb, var(--accent-color) 90%, white 15%);
+  transform: scale(1.1);
+}
+
+.header .header-toggle:active {
+  transform: scale(0.95);
+}
+
+/* Mobile Navigation Backdrop */
+.mobile-nav-backdrop {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9996;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+}
+
+.mobile-nav-backdrop.active {
+  display: block;
+  opacity: 1;
 }
 
 /*--------------------------------------------------------------
@@ -1272,4 +1496,52 @@ section,
 --------------------------------------------------------------*/
 .starter-section {
   /* Add your styles here */
+}
+/*--------------------------------------------------------------
+# Newsletter Section
+--------------------------------------------------------------*/
+.newsletter-wrap {
+  background: var(--surface-color);
+  padding: 40px 30px;
+  border-radius: 10px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+}
+
+.newsletter-wrap h3 {
+  font-family: var(--heading-font);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--heading-color);
+  margin-bottom: 10px;
+}
+
+.newsletter-wrap p {
+  color: var(--default-color);
+  margin-bottom: 20px;
+}
+
+.newsletter-form .input-group {
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.newsletter-form .form-control {
+  border-radius: 30px 0 0 30px;
+  padding: 12px 20px;
+}
+
+.newsletter-form .btn {
+  border-radius: 0 30px 30px 0;
+  padding: 12px 24px;
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+.newsletter-form .btn:hover {
+  background-color: color-mix(in srgb, var(--accent-color) 85%, black 10%);
+  border-color: color-mix(in srgb, var(--accent-color) 85%, black 10%);
+}
+
+.form-message {
+  font-size: 14px;
 }

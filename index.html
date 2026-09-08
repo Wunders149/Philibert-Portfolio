@@ -12,7 +12,12 @@
   <meta property="og:title" content="Philibert RAZAFIMAHEFA - Designer & Developer">
   <meta property="og:description" content="Portfolio of Philibert RAZAFIMAHEFA, a passionate Web Developer, UI/UX Designer, and Programmer based in Madagascar.">
   <meta property="og:image" content="https://rzfphily.dev/assets/img/my-profile-img.png">
+  <meta property="og:image:width" content="400">
+  <meta property="og:image:height" content="400">
+  <meta property="og:image:alt" content="Philibert RAZAFIMAHEFA - Portfolio">
   <meta property="og:url" content="https://rzfphily.dev/">
+  <meta property="og:site_name" content="Philibert RAZAFIMAHEFA Portfolio">
+  <meta property="og:locale" content="en_US">
   <meta property="og:type" content="website">
 
   <!-- Twitter Card -->
@@ -20,18 +25,71 @@
   <meta name="twitter:title" content="Philibert RAZAFIMAHEFA - Designer & Developer">
   <meta name="twitter:description" content="Portfolio of Philibert RAZAFIMAHEFA, a passionate Web Developer, UI/UX Designer, and Programmer based in Madagascar.">
   <meta name="twitter:image" content="https://rzfphily.dev/assets/img/my-profile-img.png">
+  <meta name="twitter:image:alt" content="Philibert RAZAFIMAHEFA - Portfolio">
 
   <!-- Canonical -->
   <link rel="canonical" href="https://rzfphily.dev/">
 
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Philibert RAZAFIMAHEFA",
+    "url": "https://rzfphily.dev/",
+    "image": "https://rzfphily.dev/assets/img/my-profile-img.png",
+    "jobTitle": "Web Developer & UI/UX Designer",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Mahajanga",
+      "addressRegion": "Boeny",
+      "addressCountry": "Madagascar"
+    },
+    "email": "mailto:razafimahefaphilibert7@gmail.com",
+    "telephone": "+261343505334",
+    "birthDate": "2002-01-09",
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "Institut de Formation Technique (IFT) Mahajanga"
+    },
+    "sameAs": [
+      "https://www.linkedin.com/in/razafimahefa-philibert-rzfphily/",
+      "https://www.facebook.com/RzfPhily",
+      "https://www.instagram.com/rzfphily/",
+      "https://github.com/Wunders149"
+    ],
+    "knowsAbout": ["Web Development", "UI/UX Design", "Mobile Applications", "Arduino Robotics", "Data Analysis", "Python", "Angular", "PHP"]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Philibert RAZAFIMAHEFA - Portfolio",
+    "url": "https://rzfphily.dev/",
+    "author": {
+      "@type": "Person",
+      "name": "Philibert RAZAFIMAHEFA",
+      "url": "https://rzfphily.dev/"
+    }
+  }
+  </script>
+
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/favicon.ico" rel="shortcut icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <meta name="theme-color" content="#149ddd">
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com" rel="preconnect">
-  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Philibert Portfolio">
+
+  <!-- Fonts (self-hosted) -->
+  <link href="assets/css/fonts.css" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -41,7 +99,7 @@
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Main CSS File -->
-  <link href="assets/css/main.css" rel="stylesheet">
+  <link href="assets/css/main.min.css" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: iPortfolio
@@ -54,8 +112,11 @@
 
 <body class="index-page">
 
+  <!-- Skip to content link for screen readers -->
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+
   <header id="header" class="header dark-background d-flex flex-column">
-    <i class="header-toggle d-xl-none bi bi-list" aria-label="Toggle navigation menu"></i>
+    <i class="header-toggle d-xl-none bi bi-list" aria-label="Toggle navigation menu" role="button" tabindex="0" aria-expanded="false" aria-controls="navmenu"></i>
 
     <div class="profile-img">
       <img src="assets/img/my-profile-img.png" alt="Philibert RAZAFIMAHEFA Profile Picture" class="img-fluid rounded-circle">
@@ -74,12 +135,21 @@
       <a href="https://github.com/Wunders149" class="github" aria-label="GitHub Profile"><i class="bi bi-github"></i></a>
     </div>
 
-    <nav id="navmenu" class="navmenu">
+    <div class="dark-mode-toggle text-center" role="group" aria-label="Theme switcher">
+      <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle dark mode" aria-pressed="false">
+        <i class="bi bi-moon-stars"></i>
+        <i class="bi bi-sun"></i>
+        <span class="theme-toggle-text">Dark Mode</span>
+      </button>
+    </div>
+
+    <nav id="navmenu" class="navmenu" aria-label="Main navigation">
       <ul>
-        <li><a href="#hero" class="active"><i class="bi bi-house navicon"></i>Home</a></li>
+        <li><a href="#hero" class="active" aria-current="page"><i class="bi bi-house navicon"></i>Home</a></li>
         <li><a href="#about"><i class="bi bi-person navicon"></i> About</a></li>
         <li><a href="#resume"><i class="bi bi-file-earmark-text navicon"></i> Resume</a></li>
         <li><a href="#portfolio"><i class="bi bi-images navicon"></i> Portfolio</a></li>
+        <li><a href="pages/starter-page.html"><i class="bi bi-layers navicon"></i> Projects</a></li>
         <li><a href="#services"><i class="bi bi-hdd-stack navicon"></i> Services</a></li>
         <li><a href="#contact"><i class="bi bi-envelope navicon"></i> Contact</a></li>
       </ul>
@@ -87,12 +157,12 @@
 
   </header>
 
-  <main class="main">
+  <main id="main-content" class="main" role="main">
 
     <!-- Hero Section -->
     <section id="hero" class="hero section dark-background">
 
-      <img src="assets/img/me.jpg" alt="Philibert RAZAFIMAHEFA Hero Image" data-aos="fade-in" class="">
+      <img src="assets/img/me.jpg" alt="Philibert RAZAFIMAHEFA Hero Image" data-aos="fade-in" class="" fetchpriority="high">
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
         <h2>Philibert RAZAFIMAHEFA</h2>
@@ -114,7 +184,7 @@
 
         <div class="row gy-4 justify-content-center">
           <div class="col-lg-4">
-            <img src="assets/img/my-profile-img.png" class="img-fluid" alt="Philibert RAZAFIMAHEFA Profile">
+            <img src="assets/img/my-profile-img.png" class="img-fluid" alt="Philibert RAZAFIMAHEFA Profile" loading="lazy" width="400" height="400">
           </div>
           <div class="col-lg-8 content">
             <h2>Web Developer &amp; UI/UX Designer.</h2>
@@ -390,7 +460,7 @@
                   <h4>Task Manager</h4>
                   <p>Cross-platform mobile app built with Ionic</p>
                   <a href="assets/img/portfolio/app-1.jpg" title="App 1" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="pages/portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                  <a href="pages/portfolio-details.html?project=task-manager" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
               </div>
             </div><!-- End Portfolio Item -->
@@ -402,7 +472,7 @@
                   <h4>E-Commerce</h4>
                   <p>Full-stack web app with Angular & PHP</p>
                   <a href="assets/img/portfolio/product-1.jpg" title="Product 1" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="pages/portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                  <a href="pages/portfolio-details.html?project=e-commerce" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
               </div>
             </div><!-- End Portfolio Item -->
@@ -414,7 +484,7 @@
                   <h4>POS System</h4>
                   <p>Desktop application for point-of-sale management</p>
                   <a href="assets/img/portfolio/branding-1.jpg" title="Branding 1" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="pages/portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                  <a href="pages/portfolio-details.html?project=pos-system" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
               </div>
             </div><!-- End Portfolio Item -->
@@ -426,7 +496,7 @@
                   <h4>Voice Robot</h4>
                   <p>Arduino voice-controlled robot with AI</p>
                   <a href="assets/img/portfolio/books-1.jpg" title="Books 1" data-gallery="portfolio-gallery-book" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="pages/portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                  <a href="pages/portfolio-details.html?project=voice-robot" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
               </div>
             </div><!-- End Portfolio Item -->
@@ -438,7 +508,7 @@
                   <h4>Fitness Tracker</h4>
                   <p>Health & wellness mobile application</p>
                   <a href="assets/img/portfolio/app-2.jpg" title="App 2" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="pages/portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                  <a href="pages/portfolio-details.html?project=fitness-tracker" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
               </div>
             </div><!-- End Portfolio Item -->
@@ -450,7 +520,7 @@
                   <h4>Dashboard</h4>
                   <p>Analytics dashboard with data visualization</p>
                   <a href="assets/img/portfolio/product-2.jpg" title="Product 2" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="pages/portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                  <a href="pages/portfolio-details.html?project=dashboard" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
               </div>
             </div><!-- End Portfolio Item -->
@@ -462,7 +532,7 @@
                   <h4>Inventory</h4>
                   <p>Inventory management desktop software</p>
                   <a href="assets/img/portfolio/branding-2.jpg" title="Branding 2" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="pages/portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                  <a href="pages/portfolio-details.html?project=inventory" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
               </div>
             </div><!-- End Portfolio Item -->
@@ -474,7 +544,7 @@
                   <h4>Smart Home</h4>
                   <p>IoT home automation with Arduino</p>
                   <a href="assets/img/portfolio/books-2.jpg" title="Books 2" data-gallery="portfolio-gallery-book" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="pages/portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                  <a href="pages/portfolio-details.html?project=smart-home" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
               </div>
             </div><!-- End Portfolio Item -->
@@ -486,7 +556,7 @@
                   <h4>Chat App</h4>
                   <p>Real-time messaging mobile application</p>
                   <a href="assets/img/portfolio/app-3.jpg" title="App 3" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="pages/portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                  <a href="pages/portfolio-details.html?project=chat-app" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
               </div>
             </div><!-- End Portfolio Item -->
@@ -498,7 +568,7 @@
                   <h4>Portfolio</h4>
                   <p>Personal portfolio website (this site)</p>
                   <a href="assets/img/portfolio/product-3.jpg" title="Product 3" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="pages/portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                  <a href="pages/portfolio-details.html?project=portfolio-site" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
               </div>
             </div><!-- End Portfolio Item -->
@@ -510,7 +580,7 @@
                   <h4>HR Manager</h4>
                   <p>Human resources desktop application</p>
                   <a href="assets/img/portfolio/branding-3.jpg" title="Branding 3" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="pages/portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                  <a href="pages/portfolio-details.html?project=hr-manager" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
               </div>
             </div><!-- End Portfolio Item -->
@@ -522,7 +592,7 @@
                   <h4>Line Follower</h4>
                   <p>Autonomous line-following robot</p>
                   <a href="assets/img/portfolio/books-3.jpg" title="Books 3" data-gallery="portfolio-gallery-book" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="pages/portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                  <a href="pages/portfolio-details.html?project=line-follower" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
               </div>
             </div><!-- End Portfolio Item -->
@@ -646,12 +716,12 @@
               <div class="testimonial-item">
                 <p>
                   <i class="bi bi-quote quote-icon-left"></i>
-                  <span>Philibert is an exceptional developer who consistently delivers high-quality work. His attention to detail and problem-solving skills are impressive.</span>
+                  <span>Philibert delivered an excellent e-commerce platform for our business. His understanding of both frontend and backend development made the project run smoothly.</span>
                   <i class="bi bi-quote quote-icon-right"></i>
                 </p>
-                <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="Testimonial from Saul Goodman" loading="lazy">
-                <h3>Saul Goodman</h3>
-                <h4>CEO &amp; Founder</h4>
+                <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="Testimonial from client" loading="lazy">
+                <h3>Hery Razakamandimby</h3>
+                <h4>Business Owner</h4>
               </div>
             </div><!-- End testimonial item -->
 
@@ -659,12 +729,12 @@
               <div class="testimonial-item">
                 <p>
                   <i class="bi bi-quote quote-icon-left"></i>
-                  <span>Working with Philibert on our UI/UX design was a great experience. He has a keen eye for aesthetics and user-centric design.</span>
+                  <span>Working with Philibert on our mobile application was a great experience. He has a keen eye for user experience and delivered beyond our expectations.</span>
                   <i class="bi bi-quote quote-icon-right"></i>
                 </p>
-                <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="Testimonial from Sara Wilsson" loading="lazy">
-                <h3>Sara Wilsson</h3>
-                <h4>Designer</h4>
+                <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="Testimonial from colleague" loading="lazy">
+                <h3>Niaina Rasoamanarivo</h3>
+                <h4>Project Manager</h4>
               </div>
             </div><!-- End testimonial item -->
 
@@ -672,12 +742,12 @@
               <div class="testimonial-item">
                 <p>
                   <i class="bi bi-quote quote-icon-left"></i>
-                  <span>The mobile app Philibert developed for us exceeded our expectations. It is fast, intuitive, and very reliable.</span>
+                  <span>The IoT solution Philibert built for our office automation was innovative and reliable. His skills in Arduino and embedded systems are impressive.</span>
                   <i class="bi bi-quote quote-icon-right"></i>
                 </p>
-                <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="Testimonial from Jena Karlis" loading="lazy">
-                <h3>Jena Karlis</h3>
-                <h4>Store Owner</h4>
+                <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="Testimonial from client" loading="lazy">
+                <h3>Andry Razafindrabe</h3>
+                <h4>Operations Director</h4>
               </div>
             </div><!-- End testimonial item -->
 
@@ -685,12 +755,12 @@
               <div class="testimonial-item">
                 <p>
                   <i class="bi bi-quote quote-icon-left"></i>
-                  <span>Philibert is a reliable freelancer who always meets deadlines. His technical expertise in Python and data analysis helped our project significantly.</span>
+                  <span>Philibert's data analysis work helped us understand our user behavior patterns. His Python skills and attention to detail are exceptional.</span>
                   <i class="bi bi-quote quote-icon-right"></i>
                 </p>
-                <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="Testimonial from Matt Brandon" loading="lazy">
-                <h3>Matt Brandon</h3>
-                <h4>Freelancer</h4>
+                <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="Testimonial from colleague" loading="lazy">
+                <h3>Fara Nomena</h3>
+                <h4>Data Analyst</h4>
               </div>
             </div><!-- End testimonial item -->
 
@@ -698,12 +768,12 @@
               <div class="testimonial-item">
                 <p>
                   <i class="bi bi-quote quote-icon-left"></i>
-                  <span>I highly recommend Philibert for any software engineering task. He is a fast learner and a dedicated professional.</span>
+                  <span>I collaborated with Philibert on a university project. His technical leadership and ability to solve complex problems made our team successful.</span>
                   <i class="bi bi-quote quote-icon-right"></i>
                 </p>
-                <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="Testimonial from John Larson" loading="lazy">
-                <h3>John Larson</h3>
-                <h4>Entrepreneur</h4>
+                <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="Testimonial from classmate" loading="lazy">
+                <h3>Mialy Ranarivelo</h3>
+                <h4>Software Engineer</h4>
               </div>
             </div><!-- End testimonial item -->
 
@@ -764,23 +834,36 @@
               <div class="row gy-4">
 
                 <div class="col-md-6">
-                  <label for="name-field" class="pb-2">Your Name</label>
-                  <input type="text" name="name" id="name-field" class="form-control" required="" autocomplete="name">
+                  <label for="name-field" class="pb-2">Your Name <span class="text-danger">*</span></label>
+                  <input type="text" name="name" id="name-field" class="form-control" required="" autocomplete="name" minlength="2" maxlength="100" placeholder="Your full name">
                 </div>
 
                 <div class="col-md-6">
-                  <label for="email-field" class="pb-2">Your Email</label>
-                  <input type="email" class="form-control" name="email" id="email-field" required="" autocomplete="email">
+                  <label for="email-field" class="pb-2">Your Email <span class="text-danger">*</span></label>
+                  <input type="email" class="form-control" name="email" id="email-field" required="" autocomplete="email" placeholder="your.email@example.com">
                 </div>
 
                 <div class="col-md-12">
-                  <label for="subject-field" class="pb-2">Subject</label>
-                  <input type="text" class="form-control" name="subject" id="subject-field" required="" autocomplete="off">
+                  <label for="subject-field" class="pb-2">Subject <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" name="subject" id="subject-field" required="" autocomplete="off" minlength="3" maxlength="200" placeholder="What is this about?">
                 </div>
 
                 <div class="col-md-12">
-                  <label for="message-field" class="pb-2">Message</label>
-                  <textarea class="form-control" name="message" rows="10" id="message-field" required=""></textarea>
+                  <label for="message-field" class="pb-2">Message <span class="text-danger">*</span></label>
+                  <textarea class="form-control" name="message" rows="10" id="message-field" required="" minlength="10" maxlength="2000" placeholder="Your message here..."></textarea>
+                  <div class="form-text">Minimum 10 characters, maximum 2000 characters.</div>
+                </div>
+
+                <div class="col-md-12">
+                  <div class="form-check">
+                    <input type="checkbox" name="privacy" id="privacy-check" class="form-check-input" required>
+                    <label for="privacy-check" class="form-check-label">I agree to the <a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal">privacy policy</a> and consent to being contacted. <span class="text-danger">*</span></label>
+                  </div>
+                </div>
+
+                <!-- Honeypot field for spam protection - hidden from users -->
+                <div class="d-none" aria-hidden="true">
+                  <input type="text" name="website" tabindex="-1" autocomplete="off">
                 </div>
 
                 <div class="col-md-12 text-center">
@@ -788,11 +871,39 @@
                   <div class="error-message"></div>
                   <div class="sent-message">Your message has been sent. Thank you!</div>
 
-                  <button type="submit">Send Message</button>
+                  <button type="submit" class="btn btn-primary btn-lg">Send Message</button>
                 </div>
 
               </div>
             </form>
+
+            <!-- Privacy Policy Modal -->
+            <div class="modal fade" id="privacyModal" tabindex="-1" aria-labelledby="privacyModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="privacyModalLabel">Privacy Policy</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <h6>Information Collection</h6>
+                    <p>When you contact me through this form, I collect your name, email address, and the content of your message solely for the purpose of responding to your inquiry.</p>
+                    
+                    <h6>Information Usage</h6>
+                    <p>Your information will only be used to communicate with you regarding your inquiry. I will not share, sell, or distribute your personal information to third parties.</p>
+                    
+                    <h6>Data Retention</h6>
+                    <p>Contact form submissions are retained for up to 6 months for reference purposes, after which they are securely deleted.</p>
+                    
+                    <h6>Contact</h6>
+                    <p>For any questions about this privacy policy, please contact me at <a href="mailto:razafimahefaphilibert7@gmail.com">razafimahefaphilibert7@gmail.com</a>.</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div><!-- End Contact Form -->
 
         </div>
@@ -801,9 +912,28 @@
 
     </section><!-- /Contact Section -->
 
+    <!-- Newsletter Section -->
+    <section id="newsletter" class="newsletter section light-background">
+      <div class="container" data-aos="fade-up">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 newsletter-wrap text-center">
+            <h3>Stay Updated</h3>
+            <p>Subscribe to get notified about my latest projects, articles, and updates. No spam, unsubscribe anytime.</p>
+            <form action="#" method="post" class="newsletter-form" id="newsletter-form" novalidate>
+              <div class="input-group">
+                <input type="email" name="newsletter-email" id="newsletter-email" class="form-control" placeholder="Enter your email address" aria-label="Email address for newsletter" autocomplete="email" required>
+                <button type="submit" class="btn btn-primary" aria-label="Subscribe to newsletter">Subscribe</button>
+              </div>
+              <div class="form-message mt-2" id="newsletter-message" aria-live="polite"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section><!-- /Newsletter Section -->
+
   </main>
 
-  <footer id="footer" class="footer position-relative light-background">
+  <footer id="footer" class="footer position-relative light-background" role="contentinfo">
 
     <div class="container">
       <div class="copyright text-center ">
@@ -821,10 +951,10 @@
   </footer>
 
   <!-- Scroll Top -->
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center" aria-label="Scroll back to top"><i class="bi bi-arrow-up-short" aria-hidden="true"></i></a>
 
   <!-- Preloader -->
-  <div id="preloader"></div>
+  <div id="preloader" role="status" aria-label="Loading page"></div>
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -839,7 +969,8 @@
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
 
   <!-- Main JS File -->
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/main.min.js"></script>
+  <script src="assets/js/analytics.js"></script>
 
 </body>
 
