@@ -12,7 +12,7 @@
  * 5. Replace the three placeholders below
  */
 window.EMAILJS_CONFIG = {
-  serviceID: 'service_z90mxjv ',   // e.g. 'service_abc123'
+  serviceID: 'service_z90mxjv',   // e.g. 'service_abc123'
   templateID: 'template_6wl57k', // e.g. 'template_xyz789'
   publicKey: 'mFSDKN8un0X9Pvtm'    // e.g. 'AbCdEf123456'
 };

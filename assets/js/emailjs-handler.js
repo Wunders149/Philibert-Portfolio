@@ -12,9 +12,9 @@
 
   const config = window.EMAILJS_CONFIG || {};
   const isConfigured = config.serviceID && config.templateID && config.publicKey &&
-    config.serviceID !== 'YOUR_SERVICE_ID' &&
-    config.templateID !== 'YOUR_TEMPLATE_ID' &&
-    config.publicKey !== 'YOUR_PUBLIC_KEY';
+    config.serviceID !== 'service_z90mxjv' &&
+    config.templateID !== 'template_6wl57k' &&
+    config.publicKey !== 'mFSDKN8un0X9Pvtm';
 
   const loadingEl = form.querySelector('.loading');
   const errorEl = form.querySelector('.error-message');
