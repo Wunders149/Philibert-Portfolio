@@ -100,6 +100,7 @@
 
   <!-- Main CSS File -->
   <link href="assets/css/main.min.css" rel="stylesheet">
+  <link href="assets/css/contact.css" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: iPortfolio
@@ -813,7 +814,7 @@
                 <i class="bi bi-telephone flex-shrink-0"></i>
                 <div>
                   <h3>Call Me</h3>
-                  <p>+261 34 35 053 34</p>
+                  <p><a href="tel:+261343505334">+261 34 35 053 34</a></p>
                 </div>
               </div><!-- End Info Item -->
 
@@ -821,7 +822,7 @@
                 <i class="bi bi-envelope flex-shrink-0"></i>
                 <div>
                   <h3>Email Me</h3>
-                  <p>razafimahefaphilibert7@gmail.com</p>
+                  <p><a href="mailto:razafimahefaphilibert7@gmail.com">razafimahefaphilibert7@gmail.com</a></p>
                 </div>
               </div><!-- End Info Item -->
 
@@ -830,34 +831,37 @@
           </div>
 
           <div class="col-lg-7">
-            <form id="contact-form" method="post" class="emailjs-form" data-aos="fade-up" data-aos-delay="200">
+            <form id="contact-form" method="post" class="php-email-form emailjs-form" data-aos="fade-up" data-aos-delay="200" novalidate>
               <div class="row gy-4">
 
                 <div class="col-md-6">
-                  <label for="name-field" class="pb-2">Your Name <span class="text-danger">*</span></label>
+                  <label for="name-field" class="pb-2 form-label">Your Name <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden"> (required)</span></label>
                   <input type="text" name="from_name" id="name-field" class="form-control" required="" autocomplete="name" minlength="2" maxlength="100" placeholder="Your full name">
                 </div>
 
                 <div class="col-md-6">
-                  <label for="email-field" class="pb-2">Your Email <span class="text-danger">*</span></label>
+                  <label for="email-field" class="pb-2 form-label">Your Email <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden"> (required)</span></label>
                   <input type="email" class="form-control" name="reply_to" id="email-field" required="" autocomplete="email" placeholder="your.email@example.com">
                 </div>
 
                 <div class="col-md-12">
-                  <label for="subject-field" class="pb-2">Subject <span class="text-danger">*</span></label>
+                  <label for="subject-field" class="pb-2 form-label">Subject <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden"> (required)</span></label>
                   <input type="text" class="form-control" name="subject" id="subject-field" required="" autocomplete="off" minlength="3" maxlength="200" placeholder="What is this about?">
                 </div>
 
                 <div class="col-md-12">
-                  <label for="message-field" class="pb-2">Message <span class="text-danger">*</span></label>
-                  <textarea class="form-control" name="message" rows="10" id="message-field" required="" minlength="10" maxlength="2000" placeholder="Your message here..."></textarea>
-                  <div class="form-text">Minimum 10 characters, maximum 2000 characters.</div>
+                  <label for="message-field" class="pb-2 form-label">Message <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden"> (required)</span></label>
+                  <textarea class="form-control" name="message" rows="8" id="message-field" required="" minlength="10" maxlength="2000" placeholder="Your message here..."></textarea>
+                  <div class="form-text d-flex justify-content-between flex-wrap gap-1">
+                    <span>Minimum 10 characters, maximum 2000 characters.</span>
+                    <span id="message-count" aria-live="polite">0 / 2000</span>
+                  </div>
                 </div>
 
                 <div class="col-md-12">
                   <div class="form-check">
                     <input type="checkbox" name="privacy" id="privacy-check" class="form-check-input" required>
-                    <label for="privacy-check" class="form-check-label">I agree to the <a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal">privacy policy</a> and consent to being contacted. <span class="text-danger">*</span></label>
+                    <label for="privacy-check" class="form-check-label">I agree to the <a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal">privacy policy</a> and consent to being contacted. <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden"> (required)</span></label>
                   </div>
                 </div>
 
@@ -867,11 +871,14 @@
                 </div>
 
                 <div class="col-md-12 text-center">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Your message has been sent. Thank you!</div>
+                  <div class="loading" role="status">Sending message<span class="visually-hidden">...</span></div>
+                  <div class="error-message" role="alert"></div>
+                  <div class="sent-message" role="status">Your message has been sent. Thank you!</div>
 
-                  <button type="submit" class="btn btn-primary btn-lg">Send Message</button>
+                  <button type="submit" class="btn btn-primary btn-lg send-btn">
+                    <span class="btn-text">Send Message</span>
+                    <span class="btn-loader d-none" aria-hidden="true"></span>
+                  </button>
                 </div>
 
               </div>
@@ -974,7 +981,7 @@
 
   <!-- Contact Form (EmailJS) -->
   <script src="assets/js/emailjs-config.js"></script>
-  <script src="assets/js/emailjs-handler.js?v=4"></script>
+  <script src="assets/js/emailjs-handler.js?v=5"></script>
 
 </body>
 

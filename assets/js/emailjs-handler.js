@@ -32,6 +32,12 @@
   const loadingEl = form.querySelector('.loading');
   const errorEl = form.querySelector('.error-message');
   const sentEl = form.querySelector('.sent-message');
+  const submitBtn = form.querySelector('button[type="submit"]');
+  const btnText = submitBtn && submitBtn.querySelector('.btn-text');
+  const btnLoader = submitBtn && submitBtn.querySelector('.btn-loader');
+  const messageField = form.querySelector('#message-field');
+  const messageCount = form.querySelector('#message-count');
+  const MESSAGE_MAX = 2000;
 
   function show(el) { if (el) el.classList.add('d-block'); }
   function hide(el) { if (el) el.classList.remove('d-block'); }
@@ -43,6 +49,25 @@
       errorEl.textContent = message;
       show(errorEl);
     }
+  }
+
+  function setSending(sending) {
+    if (!submitBtn) return;
+    submitBtn.disabled = sending;
+    if (btnText) btnText.textContent = sending ? 'Sending...' : 'Send Message';
+    if (btnLoader) btnLoader.classList.toggle('d-none', !sending);
+  }
+
+  // Live character counter for the message field.
+  function updateCount() {
+    if (!messageField || !messageCount) return;
+    const len = messageField.value.length;
+    messageCount.textContent = len + ' / ' + MESSAGE_MAX;
+    messageCount.classList.toggle('text-danger', len === MESSAGE_MAX);
+  }
+  if (messageField) {
+    messageField.addEventListener('input', updateCount);
+    updateCount();
   }
 
   // Client-side rate limiting (replaces server-side PHP rate limit)
@@ -125,17 +150,21 @@
     hide(errorEl);
     hide(sentEl);
     show(loadingEl);
+    setSending(true);
 
     emailjs.send(config.serviceID, config.templateID, buildParams(), {
       publicKey: config.publicKey
     })
     .then(function() {
+      setSending(false);
       hide(loadingEl);
       show(sentEl);
       applyRateLimit();
       form.reset();
+      updateCount();
     })
     .catch(function(error) {
+      setSending(false);
       const body = typeof error === 'string'
         ? error
         : (error && error.text) ? error.text : '';
