@@ -58,7 +58,7 @@
 
   // Track form submissions
   document.addEventListener('submit', function(e) {
-    if (e.target.classList.contains('php-email-form')) {
+    if (e.target.classList.contains('emailjs-form')) {
       trackEvent('form_submit', 'contact');
     }
   });
